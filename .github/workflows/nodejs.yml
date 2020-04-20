@@ -10,11 +10,11 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  cicd-covid19:
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js
+    - name: Build
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
@@ -22,10 +22,7 @@ jobs:
     - run: npm run build
       env:
         CI: true
-  deploy:
-    runs-on: [ubuntu-latest]
-    steps:
-    - name: S3 Sync
+    - name: Deploy
       uses: jakejarvis/s3-sync-action@v0.5.1
       env: 
         AWS_S3_BUCKET: "cicd-poc" 
