@@ -22,7 +22,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/build'
     ArtifactName: 'covid19.v1.0.1.${Build.BuildId}'
     publishLocation: 'Container'
   displayName: 'Publish Artifacts'
