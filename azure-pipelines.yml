@@ -21,7 +21,12 @@ steps:
   displayName: 'npm install and build'
 - task: CmdLine@2
   inputs:
-    script: 'ls'
+    script: |
+      pwd
+      ls
+      echo ${Agent.BuildDirectory}
+      echo ${Build.BinariesDirectory}
+      echo ${Build.SourcesDirectory}
 
 - task: PublishBuildArtifacts@1
   inputs:
