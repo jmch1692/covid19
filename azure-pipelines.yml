@@ -19,15 +19,10 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-- task: CmdLine@2
+- task: Bash@3
   inputs:
-    script: |
-      pwd
-      ls
-      echo ${Agent.BuildDirectory}
-      echo ${Build.BinariesDirectory}
-      echo ${Build.SourcesDirectory}
-
+    targetType: 'inline'
+    script: 'env | sort'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Agent.BuildDirectory)/build'
