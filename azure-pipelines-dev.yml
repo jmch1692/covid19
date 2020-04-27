@@ -6,6 +6,9 @@
 trigger:
 - develop
 
+pr:
+- develop
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -14,18 +17,35 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-
+  
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build'
+- task: SonarQubePrepare@4
+  condition: and(succeded(), eq(variables['Build.Reason'], 'PullRequest'))
+  inputs:
+    SonarQube: 'sonarqube-server'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'covid19'
+    cliProjectName: 'covid19'
+    cliSources: './src'
+- task: SonarQubeAnalyze@4
+  condition: and(succeded(), eq(variables['Build.Reason'], 'PullRequest'))
 - task: Bash@3
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
   inputs:
     targetType: 'inline'
     script: |
       git config --global user.email "jose.mario.chavarria16@gmail.com"
       git config --global user.name "Jose"
+- task: SonarQubePublish@4
+  condition: and(succeded(), eq(variables['Build.Reason'], 'PullRequest'))
+  inputs:
+    pollingTimeoutSec: '500'
 - task: Npm@1
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
   inputs:
     command: 'custom'
     customCommand: 'version patch'
@@ -33,6 +53,7 @@ steps:
     customFeed: 'd38671ee-fe71-43cb-ac2e-673ae87588e9'
     
 - task: Npm@1
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
   inputs:
     command: 'publish'
     publishRegistry: 'useFeed'
