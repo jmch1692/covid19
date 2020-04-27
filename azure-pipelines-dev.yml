@@ -5,6 +5,8 @@
 
 trigger:
 - develop
+# no PR triggers
+pr: none
 
 pr:
 - develop
