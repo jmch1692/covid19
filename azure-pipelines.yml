@@ -22,6 +22,5 @@ steps:
 - task: Npm@1
   inputs:
     command: 'publish'
-    workingDir: '$(Build.SourcesDirectory}'
     publishRegistry: 'useFeed'
     publishFeed: 'd38671ee-fe71-43cb-ac2e-673ae87588e9'
