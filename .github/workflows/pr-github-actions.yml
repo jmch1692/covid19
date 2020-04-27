@@ -4,7 +4,7 @@
 name: CICD for my project
 
 on:
-  pull_request:
+  push:
     branches: [ develop ]
 
 jobs:
