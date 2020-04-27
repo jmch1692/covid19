@@ -19,9 +19,12 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+- task: CopyFiles@2
+  inputs:
+    contents: 'build/**'
+    targetFolder: $(Build.ArtifactStagingDirectory)
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/build/**'
-    ArtifactName: 'covid19.v1.0.1.${Build.BuildId}'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'covid19.v1.0.1.${Build.BuildNumber}'
     publishLocation: 'Container'
-  displayName: 'Publish Artifacts'
