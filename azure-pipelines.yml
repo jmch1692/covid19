@@ -20,11 +20,9 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: S3Upload@1
+- task: PublishBuildArtifacts@1
   inputs:
-    awsCredentials: 'aws-creds'
-    regionName: 'us-east-2'
-    bucketName: 'cicd-poc'
-    sourceFolder: 'build'
-    globExpressions: '**'
-    filesAcl: 'public-read'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'covid19.v1.0.1.${Build.BuildId}'
+    publishLocation: 'Container'
+  displayName: 'Publish Artifacts'
