@@ -8,3 +8,4 @@ This web app is a COVID-19 Self Assessment Tool created using React.
 Webapp link: https://covid19-self-assessment.netlify.app/
 
 ****This is not a medical advice***
+
