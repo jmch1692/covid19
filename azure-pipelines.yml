@@ -23,6 +23,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'env | sort'
+- task: CmdLine@2
+  inputs:
+    script: |
+      pwd
+      ls
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Agent.BuildDirectory)/build'
