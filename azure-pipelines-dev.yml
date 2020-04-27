@@ -32,7 +32,7 @@ steps:
     cliProjectName: 'covid19'
     cliSources: './src'
 - task: SonarQubeAnalyze@4
-  condition: and(succeded(), eq(variables['Build.Reason'], 'PullRequest'))
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
 - task: Bash@3
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
   inputs:
@@ -41,7 +41,7 @@ steps:
       git config --global user.email "jose.mario.chavarria16@gmail.com"
       git config --global user.name "Jose"
 - task: SonarQubePublish@4
-  condition: and(succeded(), eq(variables['Build.Reason'], 'PullRequest'))
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
   inputs:
     pollingTimeoutSec: '500'
 - task: Npm@1
