@@ -23,7 +23,7 @@ steps:
     npm run build
   displayName: 'npm install and build'
 - task: SonarQubePrepare@4
-  condition: and(succeded(), eq(variables['Build.Reason'], 'PullRequest'))
+  condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
   inputs:
     SonarQube: 'sonarqube-server'
     scannerMode: 'CLI'
