@@ -11,27 +11,14 @@ jobs:
   cicd-covid19:
     runs-on: [ubuntu-latest]
     steps:
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v2
-      - name: Build
+      - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@octocat'
-      - name: Config Github user
-        run: |
-          git config --global user.email "jose.chavarria16@gmail.com"
-          git config --global user.name "JM"
-      - name: NPM install dependencies
+      - name: Install dependencies
         run: npm install
-      - name: NPM run build
-        run: npm run build
-        env:
-          CI: true
-      - name: NPM patch version
-        run: npm version patch
+      - name: Build package
+        run: npm build
       - env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         name: Publish to GitHub Packages
