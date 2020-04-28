@@ -5,7 +5,7 @@ name: CICD for my project
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ github-actions ]
 
 jobs:
   cicd-covid19:
