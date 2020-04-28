@@ -5,21 +5,22 @@ name: CICD for my project
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ github-actions ]
 
 jobs:
   cicd-covid19:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2.1.0
-      - name: Setup Node.js
-        uses: actions/setup-node@v1.4.2
-        with:
-          registry-url: 'https://npm.pkg.github.com/'
       - name: Install dependencies
         run: npm install
       - name: Build package
-        run: npm build
+        run: npm ci
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/jmch1692 
       - env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         name: Publish to GitHub Packages
