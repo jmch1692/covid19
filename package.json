@@ -19,7 +19,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/jmch1692" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/@jmch1692" },
   "browserslist": {
     "production": [
       ">0.2%",
