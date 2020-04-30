@@ -34,4 +34,5 @@ jobs:
            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
            -Dsonar.host.url=http://18.219.203.143:9000/
            -Dsonar.projectKey=covid19-gha
+           -Dsonar.sources=./src
           
