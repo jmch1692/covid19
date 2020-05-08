@@ -9,11 +9,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jmch1692/covid19.git"
-  },
+  }
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -23,7 +19,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/jmch1692" },
   "browserslist": {
     "production": [
       ">0.2%",
