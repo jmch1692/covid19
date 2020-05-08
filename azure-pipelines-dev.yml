@@ -49,7 +49,7 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
   inputs:
     command: 'custom'
-    customCommand: 'version patch'
+    customCommand: 'version patch -f'
     customRegistry: 'useFeed'
     customFeed: 'd38671ee-fe71-43cb-ac2e-673ae87588e9'
     
